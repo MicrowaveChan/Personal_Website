@@ -1,0 +1,67 @@
+body{
+    color: #fff;
+    background-color: #151617;
+}
+
+.jumbotron-bg{
+    color: inherit;
+    border-radius: 0;
+    background-image: url('../img/bg1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 800px;
+}
+
+.my-light{
+    border-top: 1px solid lightgray;
+}
+
+.light{
+    color: white;
+}
+
+a:hover {
+    color: #d5d5d5;
+}
+
+a:link , a:visited, a:active {
+  text-decoration: none;
+}
+
+.icon a{
+    font-size: 2em;
+    padding: 1rem;
+    color:white;
+}
+
+.fa-github:hover,
+.fa-linkedin-in:hover,
+.fa-envelope:hover{
+    color: #d5d5d5;
+}
+
+.margin-top{
+    margin-top : 5rem;
+}
+
+.display-5 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.carousel-inner img{
+    max-height: 100vh;
+}
+
+.carousel-inner{
+    min-width: 550px;
+}
+
+
+
+
+
+
+
+
