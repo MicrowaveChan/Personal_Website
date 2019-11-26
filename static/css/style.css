@@ -6,7 +6,7 @@ body{
 .jumbotron-bg{
     color: inherit;
     border-radius: 0;
-    background-image: url('bg1.jpg');
+    background-image: url('../img/bg1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 800px;
