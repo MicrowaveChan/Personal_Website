@@ -29,8 +29,8 @@ def art():
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     form = ContactForm()
-    if request.method == 'POST' and form.validate():
-        print('test')
+    if form.validate_on_submit:
+        print(f'Name: {form.name.data}\nEmail: {form.email.data}\nMessage: \"{form.message.data}\"')
     return render_template('contact.html', active_page='contact', form=form)
 
 
