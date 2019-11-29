@@ -17,27 +17,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Project1</td>
-                <td>Description</td>
-                <td>Java</td>
-                <td>Done</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Project2</td>
-                <td>Description</td>
-                <td>html</td>
-                <td>WIP</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Project3</td>
-                <td>Description</td>
-                <td>Python</td>
-                <td>WIP</td>
-              </tr>
+              {% for project in project_list %}
+                <tr>
+                  {% for col in project[:1] %}
+                    <td scope="row">{{ col }}</td>
+                  {% endfor %}
+                  {% for col in project[1:2] %}
+                    {% for link in project[2:3] %}
+                      <td scope="row">
+                        <a href="{{ link }}">{{ col }}</a>
+                      </td>
+                    {% endfor %}
+                  {% endfor %}
+                  {% for col in project[3:] %}
+                    <td scope="row">{{ col }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
       </div>
