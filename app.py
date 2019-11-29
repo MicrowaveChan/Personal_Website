@@ -1,6 +1,6 @@
 import csv
 from flask import Flask, render_template
-from forms import SignupForm, LoginForm
+from forms import SignupForm, LoginForm, ContactForm
 
 app = Flask(__name__)
 

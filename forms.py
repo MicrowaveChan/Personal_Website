@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Email, EqualTo, Regexp
+from wtforms.widgets import TextArea
 
 class SignupForm(FlaskForm):
     email = StringField('Email', validators=[InputRequired(), Email()])
@@ -22,7 +23,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class ContactForm(FlaskForm):
-    name = StringField('Name', validators=[])
+    name = StringField('Name', validators=[InputRequired()])
     email = StringField('Email', validators=[InputRequired(), Email()])
-    message = StringField('Message', validators=[InputRequired()])
-    submit = SubmitField('Login')
+    message = StringField('Message', validators=[InputRequired()], widget=TextArea())
+    submit = SubmitField('Submit')
