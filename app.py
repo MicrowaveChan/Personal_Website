@@ -1,10 +1,9 @@
 import csv
-from flask import Flask, render_template
+from flask import Flask, render_template, flash, request
 from forms import SignupForm, LoginForm, ContactForm
 
 app = Flask(__name__)
-
-app.config['SECRET_KEY'] = '4f3c2b1a6c977eef'
+app.secret_key = '4f3c2b1a6c977eef'
 
 @app.route('/')
 @app.route('/home')
@@ -27,9 +26,11 @@ def art():
     return render_template('art.html', active_page='art')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET','POST'])
 def contact():
     form = ContactForm()
+    if request.method == 'POST' and form.validate():
+        print('test')
     return render_template('contact.html', active_page='contact', form=form)
 
 

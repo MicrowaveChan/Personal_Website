@@ -6,19 +6,19 @@
   <div class="container-fluid margin-top">
       <div class="col-md-12"><h1>Contact</h1></div>
       <div class="col-md-12">
-        <form method="POST" action="">
+        <form method="POST" action="/contact">
           <fieldset>
               <div class=form-group>
                 {{ form.name.label(class="form-control-label") }}
-                {{ form.name(class="form-control form-control") }}
+                {{ form.name(class="form-control") }}
               </div>
               <div class=form-group>
                 {{ form.email.label(class="form-control-label") }}
-                {{ form.email(class="form-control form-control") }}
+                {{ form.email(class="form-control") }}
               </div>
               <div class=form-group>
                 {{ form.message.label(class="form-control-label") }}
-                {{ form.message(rows="10", class="form-control form-control") }}
+                {{ form.message(rows="10", class="form-control") }}
               </div>
           </fieldset>
           <div class=form-group>
