@@ -3,6 +3,13 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 from wtforms.widgets import TextArea
 
+class ContactForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    message = StringField('Message', validators=[DataRequired()], widget=TextArea())
+    submit = SubmitField('Submit')
+
+    
 class SignupForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired(),
@@ -21,9 +28,3 @@ class LoginForm(FlaskForm):
                             Length(min=6, max=20)])
     remember_me = BooleanField('Remember me')
     submit = SubmitField('Login')
-
-class ContactForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    message = StringField('Message', validators=[DataRequired()], widget=TextArea())
-    submit = SubmitField('Submit')

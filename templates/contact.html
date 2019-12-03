@@ -4,10 +4,19 @@
 {% block title %} {{ super() }} - Contact{% endblock %}
 {% block content %}
   <div class="container-fluid margin-top">
-
       <div class="col-md-12"><h1>Contact</h1></div>
       <div class="col-md-12">
-        <form method="POST" action="/contact">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{category}}">
+                <li>{{ message }}</li>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
           <fieldset>
               <div class=form-group>
                 {{ form.name.label(class="form-control-label") }}
