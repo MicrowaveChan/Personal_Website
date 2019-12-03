@@ -29,9 +29,9 @@ def art():
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     form = ContactForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         flash(f'Message sent successfully.\nName: {form.name.data}\nEmail: {form.email.data}\nMessage: \"{form.message.data}\"', 'success')
-        #return redirect(url_for('contact'))
+        return redirect(url_for('contact'))
 
     return render_template('contact.html', active_page='contact', form=form)
 
