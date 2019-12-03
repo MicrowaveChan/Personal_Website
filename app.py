@@ -1,5 +1,5 @@
 import csv
-from flask import Flask, render_template, flash, request
+from flask import Flask, render_template, url_for, flash, redirect
 from forms import SignupForm, LoginForm, ContactForm
 
 app = Flask(__name__)
@@ -30,7 +30,8 @@ def art():
 def contact():
     form = ContactForm()
     if form.validate_on_submit:
-        print(f'Name: {form.name.data}\nEmail: {form.email.data}\nMessage: \"{form.message.data}\"')
+        flash(f'Message sent successfully.\nName: {form.name.data}\nEmail: {form.email.data}\nMessage: \"{form.message.data}\"', 'success')
+        #return redirect(url_for('home'))
     return render_template('contact.html', active_page='contact', form=form)
 
 
