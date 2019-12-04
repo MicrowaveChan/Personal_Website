@@ -1,6 +1,6 @@
 import csv
 from flask import render_template, url_for, flash, redirect
-from personal_website import app, bcrypt
+from personal_website import app, bcrypt, db
 from personal_website.forms import SignupForm, LoginForm, ContactForm
 from personal_website.models import User
 

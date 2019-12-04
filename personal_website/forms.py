@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp, ValidationError
 from wtforms.widgets import TextArea
+from personal_website import db
+from personal_website.models import User
 
 class ContactForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
@@ -25,12 +27,12 @@ class SignupForm(FlaskForm):
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
-            raise ValidationError(f'Username {username} is already taken.')
+            raise ValidationError(f'Username is already taken.')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError(f'Email {email} is already taken.')
+            raise ValidationError(f'Email is already taken.')
 
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
