@@ -1,9 +1,9 @@
 import csv
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from personal_website import app, bcrypt, db
 from personal_website.forms import SignupForm, LoginForm, ContactForm
 from personal_website.models import User
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 prefix = 'personal_website/'
 @app.route('/')
@@ -38,6 +38,7 @@ def contact():
 
 
 @app.route('/register', methods=['GET','POST'])
+@login_required
 def register():
     form = SignupForm()
     if form.validate_on_submit():
@@ -58,7 +59,12 @@ def login():
         if user and bcrypt.check_password_hash(user.password_hash, form.password.data):
             login_user(user, remember=form.remember_me.data)
             flash(f'Login Successful. Welcome, {user.username}!', 'success')
-            redirect(url_for('login'))
+            # checking for different redirect after user login
+            next_page = request.args.get('next')
+            if next_page:
+                return redirect(next_page)
+            else:
+                return redirect(url_for('login'))
         else:
             flash(f'Account for email {form.email.data} does not exist.', 'danger')
     return render_template('login.html', active_page='login', form=form)
@@ -68,3 +74,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route('/secret')
+@login_required
+def secret():
+    return render_template('secret.html', active_page='secret')

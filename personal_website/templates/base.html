@@ -35,11 +35,14 @@
 					</li>
 					{% if current_user.is_authenticated %}
 						<li class="nav-item">
+							<a class="nav-link {% if active_page == 'secret' %}active{% endif %}" href="{{ url_for('secret') }}">Secret</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
 						</li>
 					{% else %}
-						<li class="nav-item">
 							<a class="nav-link {% if active_page == 'login' %}active{% endif %}" href="{{ url_for('login') }}">Login</a>
+							<li class="nav-item">
 						</li>
 						<li class="nav-item">
 							<a class="nav-link {% if active_page == 'register' %}active{% endif %}" href="{{ url_for('register') }}">Register</a>
