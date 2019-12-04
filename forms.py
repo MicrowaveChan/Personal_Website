@@ -9,7 +9,7 @@ class ContactForm(FlaskForm):
     message = StringField('Message', validators=[DataRequired()], widget=TextArea())
     submit = SubmitField('Submit')
 
-    
+
 class SignupForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     username = StringField('Username', validators=[DataRequired(),
@@ -17,7 +17,7 @@ class SignupForm(FlaskForm):
                             Regexp('^[A-Za-z][A-Za-z0-9_]*$', 0,
                             'Username must start with a letter and can only contain letters, numbers and underscores.')])
     password = PasswordField('Password', validators=[DataRequired(),
-                            Length(min=6, max=20)])
+                            Length(min=6, max=36)])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),
                             EqualTo('password')])
     submit = SubmitField('Register')

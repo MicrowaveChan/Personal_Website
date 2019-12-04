@@ -1,59 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 {% block head %}
-  <head>
-      <title>{% block title %}Personal Website{% endblock %}</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-      <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  </head>
+
+<head>
+	<title>{% block title %}Personal Website{% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
 {% endblock %}
+
 <body>
-  {% block navbar %}
-    <nav class="navbar navbar-expand-md bg-transparent navbar-dark fixed-top">
-        <a class="navbar-brand" href="/home">Robert Michaud</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'projects' %}active{% endif %}" href="/projects">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'art' %}active{% endif %}" href="/art">Art</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="/contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {% if active_page == 'register' %}active{% endif %}" href="/register">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-  {% endblock %}
-  {% block content %}{% endblock %}
-  {% block footer %}
-    <footer>
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-12"><hr class="my-light"></div>
-                <div class="col-md-6"><a class="lead light" href="/home">Home</a> </div>
-                <div class="col-md-6"><a class="lead light" href="/projects">Projects</a> </div>
-                <div class="col-md-6"><a class="lead light" href="/art">Art</a> </div>
-                <div class="col-md-6"><a class="lead light" href="/contact">Contact</a> </div>
+	{% block navbar %}
+		<nav class="navbar navbar-expand-md bg-transparent navbar-dark fixed-top">
+			<a class="navbar-brand" href="{{ url_for('home') }}">Robert Michaud</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link {% if active_page == 'projects' %}active{% endif %}" href="{{ url_for('projects') }}">Projects</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if active_page == 'art' %}active{% endif %}" href="{{ url_for('art') }}">Art</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if active_page == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if active_page == 'login' %}active{% endif %}" href="{{ url_for('login') }}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if active_page == 'register' %}active{% endif %}" href="{{ url_for('register') }}">Register</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	{% endblock %}
+	{% block content %}{% endblock %}
+	{% block footer %}
+		<footer>
+			<div class="container-fluid">
+				<div class="row text-center">
+					<div class="col-12">
+						<hr class="my-light">
+					</div>
+					<div class="col-md-6"><a class="lead light" href="{{ url_for('home') }}">Home</a> </div>
+					<div class="col-md-6"><a class="lead light" href="{{ url_for('projects') }}">Projects</a> </div>
+					<div class="col-md-6"><a class="lead light" href="{{ url_for('art') }}">Art</a> </div>
+					<div class="col-md-6"><a class="lead light" href="{{ url_for('contact') }}">Contact</a> </div>
 
-            </div>
-        </div>
-    </footer>
-  {% endblock %}
+				</div>
+			</div>
+		</footer>
+	{% endblock %}
 
+</body>
 
-  </body>
 </html>

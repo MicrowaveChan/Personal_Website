@@ -1,40 +1,50 @@
-
 {% extends "base.html" %}
 
 {% block title %} {{ super() }} - Contact{% endblock %}
 {% block content %}
   <div class="container-fluid margin-top">
-      <div class="col-md-12"><h1>Contact</h1></div>
-      <div class="col-md-12">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{category}}">
-                <li>{{ message }}</li>
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        <form method="POST" action="">
-          {{ form.hidden_tag() }}
-          <fieldset>
-              <div class=form-group>
-                {{ form.name.label(class="form-control-label") }}
-                {{ form.name(class="form-control") }}
-              </div>
-              <div class=form-group>
-                {{ form.email.label(class="form-control-label") }}
-                {{ form.email(class="form-control") }}
-              </div>
-              <div class=form-group>
-                {{ form.message.label(class="form-control-label") }}
-                {{ form.message(rows="10", class="form-control") }}
-              </div>
-          </fieldset>
-          <div class=form-group>
-            {{ form.submit(class="btn btn-outline-light")}}
+    <div class="col-md-12">
+      <h1>Contact</h1>
+    </div>
+    <div class="col-md-12">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+          <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {{ form.name(class="form-control") }}
           </div>
-        </form>
-      </div>
+          <div class="form-group">
+            {{ form.email.label(class="form-control-label") }}
+            {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+              <span>{{ error }}</span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.email(class="form-control") }}
+            {% endif %}
+          </div>
+          <div class="form-group">
+            {{ form.message.label(class="form-control-label") }}
+            {{ form.message(rows="10", class="form-control") }}
+          </div>
+        </fieldset>
+        <div class="form-group">
+          {{ form.submit(class="btn btn-outline-light")}}
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock %}
