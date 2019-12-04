@@ -4,7 +4,7 @@ A personal website that started as a school project.
 As this is a open ended project, as opposed to a closed set of instuctions that could be plagiarized, I've taken the liberty to create a public repository for it.
 
 ## requirements
-'''
+```
 bcrypt==3.1.7
 cffi==1.13.2
 Click==7.0
@@ -21,4 +21,4 @@ six==1.13.0
 SQLAlchemy==1.3.11
 Werkzeug==0.16.0
 WTForms==2.2.1
-'''
+```
