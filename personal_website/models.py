@@ -1,6 +1,12 @@
-from personal_website import db
+from personal_website import db, login_manager
+from flask_login import UserMixin
 
-class User(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
+class User(db.Model, UserMixin):
     # unique userID
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), index=True, unique=True, nullable=False)

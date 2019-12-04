@@ -3,6 +3,7 @@ from flask import render_template, url_for, flash, redirect
 from personal_website import app, bcrypt, db
 from personal_website.forms import SignupForm, LoginForm, ContactForm
 from personal_website.models import User
+from flask_login import login_user
 
 prefix = 'personal_website/'
 @app.route('/')
@@ -53,9 +54,11 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'admin@test.com' and form.password.data == 'testing':
-            flash(f'Welcome, admin.', 'success')
-            return redirect(url_for('login'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password_hash, form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            flash(f'Login Successful. Welcome, {user.username}!', 'success')
+            redirect(url_for('login'))
         else:
             flash(f'Account for email {form.email.data} does not exist.', 'danger')
     return render_template('login.html', active_page='login', form=form)
