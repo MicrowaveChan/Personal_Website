@@ -2,11 +2,25 @@ import csv
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import SignupForm, LoginForm, ContactForm
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.secret_key = '4f3c2b1a6c977eef'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///static/data/app.db'
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
+class User(db.Model):
+    # unique userID
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(15), index=True, unique=True, nullable=False)
+    email = db.Column(db.String(120), index=True, unique=True, nullable=False)
+    password_hash = db.Column(db.String(60), nullable=False)
+
+    # toString
+    def __repr__(self):
+        return f'User \'{self.username}\' Email \'{self.email}\''
+
 
 @app.route('/')
 @app.route('/home')
@@ -43,6 +57,10 @@ def contact():
 def register():
     form = SignupForm()
     if form.validate_on_submit():
+        password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data,email=form.email.data, password_hash=password_hash)
+        db.session.add(user)
+        db.session.commit()
         flash(f'Account successfully made for {form.username.data}.', 'success')
         return redirect(url_for('register'))
     return render_template('register.html', active_page='register', form=form)
