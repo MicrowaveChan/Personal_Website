@@ -1,38 +1,21 @@
 import csv
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import SignupForm, LoginForm, ContactForm
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
+from flask import render_template, url_for, flash, redirect
+from personal_website import app, bcrypt
+from personal_website.forms import SignupForm, LoginForm, ContactForm
+from personal_website.models import User
 
-app = Flask(__name__)
-app.secret_key = '4f3c2b1a6c977eef'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///static/data/app.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-
-class User(db.Model):
-    # unique userID
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), index=True, unique=True, nullable=False)
-    email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-    password_hash = db.Column(db.String(60), nullable=False)
-
-    # toString
-    def __repr__(self):
-        return f'User \'{self.username}\' Email \'{self.email}\''
-
-
+prefix = 'personal_website/'
 @app.route('/')
 @app.route('/home')
 def home():
-    with open('static/data/skills.csv') as f:
+    with open(prefix + url_for('static', filename='data/skills.csv')) as f:
         skill_list = list(csv.reader(f))[1:]
     return render_template('home.html', skill_list=skill_list)
 
 
 @app.route('/projects')
 def projects():
-    with open('static/data/projects.csv') as f:
+    with open(prefix + url_for('static', filename='data/projects.csv')) as f:
         project_list = list(csv.reader(f))[1:]
     return render_template('projects.html', active_page='projects',
                             project_list=project_list)
@@ -76,7 +59,3 @@ def login():
         else:
             flash(f'Account for email {form.email.data} does not exist.', 'danger')
     return render_template('login.html', active_page='login', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

@@ -1,4 +1,4 @@
-from app import db
+from personal_website import db
 
 class User(db.Model):
     # unique userID
