@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect
 from personal_website import app, bcrypt, db
 from personal_website.forms import SignupForm, LoginForm, ContactForm
 from personal_website.models import User
-from flask_login import login_user
+from flask_login import login_user, current_user, logout_user
 
 prefix = 'personal_website/'
 @app.route('/')
@@ -62,3 +62,9 @@ def login():
         else:
             flash(f'Account for email {form.email.data} does not exist.', 'danger')
     return render_template('login.html', active_page='login', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('home'))

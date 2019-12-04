@@ -5,7 +5,7 @@ from flask_login import UserMixin
 def load_user(user_id):
     return User.query.get(user_id)
 
-
+# UserMixin provides default implementation of all needed user login methods
 class User(db.Model, UserMixin):
     # unique userID
     id = db.Column(db.Integer, primary_key=True)
