@@ -55,15 +55,15 @@
 	{% block content %}{% endblock %}
 	{% block footer %}
 		<footer>
-			<div class="container-fluid">
-				<div class="row text-center">
-					<div class="col-12">
-						<hr class="my-light">
-					</div>
-					<div class="col-md-6"><a class="lead light" href="{{ url_for('home') }}">Home</a> </div>
-					<div class="col-md-6"><a class="lead light" href="{{ url_for('projects') }}">Projects</a> </div>
-					<div class="col-md-6"><a class="lead light" href="{{ url_for('art') }}">Art</a> </div>
-					<div class="col-md-6"><a class="lead light" href="{{ url_for('contact') }}">Contact</a> </div>
+			<div class="container-fluid margin-top margin-bot">
+				<div class="col-12">
+					<hr class="my-light">
+				</div>
+				<div class="row text-center mt-5">
+					<div class="col-md-6 pt-2"><a class="lead light" href="{{ url_for('home') }}">Home</a> </div>
+					<div class="col-md-6 pt-2"><a class="lead light" href="{{ url_for('projects') }}">Projects</a> </div>
+					<div class="col-md-6 pt-2"><a class="lead light" href="{{ url_for('art') }}">Art</a> </div>
+					<div class="col-md-6 pt-2"><a class="lead light" href="{{ url_for('contact') }}">Contact</a> </div>
 
 				</div>
 			</div>

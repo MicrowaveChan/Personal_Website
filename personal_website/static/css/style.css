@@ -3,13 +3,14 @@ body{
     background-color: #151617;
 }
 
+
 .jumbotron-bg{
+    height: 100vh;
     color: inherit;
     border-radius: 0;
     background-image: url('../img/bg1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 800px;
 }
 
 .my-light{
@@ -44,6 +45,10 @@ a:link , a:visited, a:active {
     margin-top : 5rem;
 }
 
+.margin-bot{
+    margin-bottom: 5rem;
+}
+
 .display-5 {
   font-size: 2rem;
   font-weight: 500;
@@ -55,15 +60,3 @@ a:link , a:visited, a:active {
     width: 100%;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
