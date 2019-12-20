@@ -1,4 +1,4 @@
 id,Project,url,Description,Language,Status
-1,Blackjack,https://github.com/MicrowaveChan/blackjack,Text-based blackjack,Python,WIP
-2,Personal Website,https://github.com/MicrowaveChan/Personal_Website,This website using bootstrap/flask,html/ python,WIP
-3,TicTacToe,https://github.com/MicrowaveChan/tic-tac-toe,TicTacToe using java swing/awt,java,WIP
+1,Blackjack,https://github.com/weibolu-rm/blackjack,Text-based blackjack,Python,WIP
+2,Personal Website,https://github.com/weibolu-rm/Personal_Website,This website using bootstrap/flask,html/ python,WIP
+3,TicTacToe,https://github.com/weibolu-rm/tic-tac-toe,TicTacToe using java swing/awt,java,WIP
