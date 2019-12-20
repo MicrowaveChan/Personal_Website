@@ -2,10 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from personal_website.config import Config
 
 app = Flask(__name__)
-app.secret_key = '4f3c2b1a6c977eef'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///static/data/app.db'
+app.config.from_object(Config)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
