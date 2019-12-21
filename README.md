@@ -1,24 +1,49 @@
 # Personal_Website
-A personal website that started as a school project. 
+Personal Website build with HTML/ CSS/ Bootstrap and Flask.
+Still a work in progress.
 
-As this is a open ended project, as opposed to a closed set of instuctions that could be plagiarized, I've taken the liberty to create a public repository for it.
+[Live version](www.robertmichaud.xyz) deployed using nginx and gunicorn.
 
-## requirements
+## Getting Started
+- git clone
+- setup python3 virtualenv and install requirements
+- setup config file or environment variables
+- run development server
+- navigate to http://localhost:5000
 ```
-bcrypt==3.1.7
-cffi==1.13.2
-Click==7.0
-Flask==1.1.1
-Flask-Bcrypt==0.7.1
-Flask-Login==0.4.1
-Flask-SQLAlchemy==2.4.1
-Flask-WTF==0.14.2
-itsdangerous==1.1.0
-Jinja2==2.10.3
-MarkupSafe==1.1.1
-pycparser==2.19
-six==1.13.0
-SQLAlchemy==1.3.11
-Werkzeug==0.16.0
-WTForms==2.2.1
+python3 run.py
 ```
+
+## Requirements
+See requirements.txt
+See config.py
+
+Python env
+```
+# virtualenv setup
+virtualenv -p python3 venv
+source venv/bin/activate
+
+# now using virtualenv
+pip install -r requirements.txt
+```
+app config
+```
+# using environment variables
+import os
+
+class Config():
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+```
+```
+# using a config.json file
+import json
+with open('/etc/flask-config.json') as config_file:
+    config = json.load(config_file)
+
+class Config():
+    SECRET_KEY = config.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')	
+```
+
