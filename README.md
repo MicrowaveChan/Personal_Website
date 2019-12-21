@@ -17,7 +17,7 @@ python3 run.py
 ## Requirements
 *See requirements.txt and config.py*
 
-###Python3 virtualenv
+### Python3 virtualenv
 ```
 # virtualenv setup
 virtualenv -p python3 venv
@@ -26,7 +26,7 @@ source venv/bin/activate
 # now using virtualenv
 pip install -r requirements.txt
 ```
-###app config
+### app config
 With environment variables
 ```
 # using environment variables
