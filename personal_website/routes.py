@@ -1,9 +1,11 @@
 import csv
 from flask import render_template, url_for, flash, redirect, request
-from personal_website import app, bcrypt, db
+from personal_website import app, bcrypt, db, mail
 from personal_website.forms import SignupForm, LoginForm, ContactForm
 from personal_website.models import User
+from personal_website.config import Config
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 
 prefix = 'personal_website/'
 @app.route('/')
@@ -26,12 +28,21 @@ def projects():
 def art():
     return render_template('art.html', active_page='art')
 
+def send_contact_email(form):
+    msg = Message(form.subject.data, sender=Config.MAIL_USERNAME,
+                    recipients=[Config.MAIL_USERNAME])
+    msg.body = f'''From: {form.name.data} <{form.email.data}>
+
+{form.message.data}
+'''
+    mail.send(msg)
 
 @app.route('/contact', methods=['GET','POST'])
 def contact():
     form = ContactForm()
     if form.validate_on_submit():
-        flash(f'Message sent successfully.\nName: {form.name.data}\nEmail: {form.email.data}\nMessage: \"{form.message.data}\"', 'success')
+        send_contact_email(form)
+        flash(f'Thank you, message sent successfully.', 'success')
         return redirect(url_for('contact'))
 
     return render_template('contact.html', active_page='contact', form=form)
@@ -42,7 +53,8 @@ def register():
     form = SignupForm()
     if form.validate_on_submit():
         password_hash = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data,email=form.email.data, password_hash=password_hash)
+        user = User(username=form.username.data,email=form.email.data,
+                        password_hash=password_hash)
         db.session.add(user)
         db.session.commit()
         flash(f'Account successfully made for {form.username.data}.', 'success')

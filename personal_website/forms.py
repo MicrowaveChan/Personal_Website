@@ -6,7 +6,10 @@ from personal_website import db
 from personal_website.models import User
 
 class ContactForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired(),
+                            Length(max=36)])
+    subject = StringField('Subject', validators=[DataRequired(),
+                            Length(max=50)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     message = StringField('Message', validators=[DataRequired()], widget=TextArea())
     submit = SubmitField('Submit')
