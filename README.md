@@ -2,6 +2,8 @@
 Personal Website build with HTML/ CSS/ Bootstrap and Flask.
 Still a work in progress.
 
+
+*live version currently not on most recent push*
 [Live version](http://www.robertmichaud.xyz) deployed using nginx and gunicorn.
 
 ## Getting Started
@@ -45,6 +47,8 @@ with open('/etc/flask-config.json') as config_file:
 
 class Config():
     SECRET_KEY = config.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')	
+    SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')
 ```
+### Issues
 
+- Although the contact form works on a development server, it doesn't on the deployed server.
