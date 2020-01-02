@@ -2,8 +2,8 @@
 Personal Website build with HTML/ CSS/ Bootstrap and Flask.
 Still a work in progress.
 
+*Waiting on Linode to allow smtp ports for contact form*
 
-*live version currently not on most recent push*
 [Live version](http://www.robertmichaud.xyz) deployed using nginx and gunicorn.
 
 ## Getting Started
