@@ -50,4 +50,4 @@ class Config():
 ```
 ### Issues
 
-- Although the contact form works on a development server, it doesn't on the deployed server.
+- ~~Although the contact form works on a development server, it doesn't on the deployed server.~~
